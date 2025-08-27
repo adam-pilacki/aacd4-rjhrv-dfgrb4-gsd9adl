@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use App\Command\PurchaseCandyCommand;
+use App\Machine\CandyCatalog;
+use App\Machine\CandyMachine;
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+
+// Create dependencies
+$catalog = new CandyCatalog();
+$machine = new CandyMachine($catalog);
+
+// Create command with dependencies (using interfaces)
+$command = new PurchaseCandyCommand($machine, $catalog);
+$application->add($command);
+
+$application->run();
