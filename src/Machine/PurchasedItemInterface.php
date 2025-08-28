@@ -11,4 +11,6 @@ interface PurchasedItemInterface
     public function getTotalAmount(): float;
 
     public function getChange(): array;
+
+    public function getUnitPrice(): float;
 }
